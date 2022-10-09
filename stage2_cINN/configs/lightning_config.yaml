@@ -1,0 +1,56 @@
+Flow:
+  n_flows: 20
+  flow_hidden_depth: 2
+  flow_mid_channels_factor: 8
+
+Conditioning_Model:
+  z_dim: 128
+  checkpoint_name: 'Encoder_stage2'
+  model_name: 'LightningGS_AE0'
+  model_path: 'D:/BTH/EXJOBB/ColabServers/Image2video/stage2_cINN/AE/saves/'
+
+First_stage_model:
+  checkpoint_encoder: 'latest_checkpoint_ENC'
+  checkpoint_decoder: 'latest_checkpoint_GEN'
+  model_name: 'LightningGSShort1'
+  model_path: 'D:/BTH/EXJOBB/ColabServers/Image2video/stage1_VAE/saves/'
+
+Training:
+  n_epochs: 300
+  lr: 1e-5
+  workers: 8
+  bs: 50
+  bs_eval: 10
+  control: False
+  verbose_idx: 30
+  weight_decay: 0
+  gamma: 0.5
+  step_size: 6
+  beta1: 0.9
+  beta2: 0.99
+  amsgrad: True
+  savename: 'lightningCINN'
+  save_path: 'saves'
+
+Data:
+  sequence_length: 17
+  sequence_Truelength: 9
+  img_size: 128
+  dataset: 'lightning'
+  aug: True
+  gs: True
+  iter_train: 10
+  iter_eval: 7
+  iter_test: 6
+  data_path: 'D:/BTH/EXJOBB/ColabServers/Data/Lightning/'
+  Augmentation:
+    brightness: 0
+    contrast: 0
+    saturation: 0
+    hue: 0
+    prob_hflip: 0.5
+
+Logging:
+  entity: 'h3nx'
+  project: "I2V_CINN_gsShort"
+  mode: 'online'

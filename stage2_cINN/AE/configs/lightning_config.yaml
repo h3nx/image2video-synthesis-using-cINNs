@@ -1,0 +1,50 @@
+AE:
+  deterministic: False
+  in_size: 128
+  norm: "bn"
+  encoder_type: "resnet50"
+  use_actnorm_in_dec: False
+  pre_process: False
+  z_dim: 128
+  pretrained: False
+
+Discriminator_Patch:
+  in_channels: 3
+  ndf: 64
+  n_layers: 3
+  use_actnorm: True
+  spectral_norm: True
+
+Training:
+  w_kl: 1e-4
+  n_epochs: 3000
+  lr: 2e-4
+  bs: 30
+  weight_decay: 0
+  workers: 8
+  pretrain: 20
+  savename: 'Lightning_AE'
+  save_path: 'saves'
+
+Data:
+  sequence_length: 1
+  sequence_Truelength: 1
+  img_size: 128
+  dataset: 'lightning'
+  aug: True
+  gs: True
+  iter_train: 20
+  iter_eval: 2
+  iter_test: 6
+  data_path: 'D:/BTH/EXJOBB/ColabServers/Data/Lightning/'
+  Augmentation:
+    brightness: 0.3
+    contrast: 0.3
+    saturation: 0.3
+    hue: 0.10
+    prob_hflip: 0.5
+
+Logging:
+  entity: 'h3nx'
+  project: "I2V_AE_GS"
+  mode: 'online'
